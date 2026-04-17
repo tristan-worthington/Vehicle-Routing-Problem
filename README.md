@@ -18,7 +18,7 @@ The following is a table of describing the dataset used:
     0
     
     VEHICLE INFO:
-    Capacity: 15
+    Capacity: 5
     Number of Vehicles: 1
     
     DISTANCE MATRIX:

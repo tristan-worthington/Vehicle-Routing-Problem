@@ -16,7 +16,7 @@
 // functions have been properly 
 // implemented
 // - T
-void clarkWrightSavings();
+std::list<std::string> clarkWright(std::vector<std::vector<int>>);
 std::list<std::string> nearestNeighbor(std::vector<std::vector<int>>);
 std::list<std::string> tabuSearch(std::vector<std::vector<int>> graph);
 bool confirmAllVisitied(std::vector<bool>);

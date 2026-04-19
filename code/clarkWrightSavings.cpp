@@ -6,11 +6,6 @@
 
 #include "vehicleRoutingProblem.h"
 
-// Convert index to string label
-std::string toLabel(int i) {
-    return std::string(1, 'A' + i);
-}
-
 // Represents a saving: merging the routes that serve
 // node i and node j yields a cost reduction of 'saving'
 struct Saving {

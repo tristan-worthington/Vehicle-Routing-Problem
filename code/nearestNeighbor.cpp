@@ -5,9 +5,10 @@
 //	    algorithm to try to find the most efficient
 //	    route between a set of points
 //
-// NOTE: No code used in these functions were AI
-// 	 generated. These were made by solely me,
-// 	 the author, at 4:40 something AM.
+// NOTE:
+// Within this function file, no code
+// was written with generative AI and
+// was written by a human.
 //
 // "So steel yourself and remember: there can
 //  be no bravery without madness."
@@ -38,27 +39,23 @@ bool confirmAllVisited(std::vector<bool> beenVisited){
 // that have no neighbors. (eg some vertex H that
 // shares no connections with any other vertex.)
 std::list<std::string> nearestNeighbor(std::vector<std::vector<int>> graph){	
-	// variables uses throughout function
+	// Variables uses throughout function
 	clock_t startTime = clock();
 	int cost;
 	int currRow = 0;
-	int currShortestPath = 99999999999999999999999999999999999999999999999999999999;
+	const int DEFAULT_SHORTEST_PATH = 9999999;
+	int currShortestPath = DEFAULT_SHORTEST_PATH;
 	int next;
 	std::list<std::string> pointsVisited;
-	std::vector<bool> beenVisited(graph.size(), false);		
+	std::vector<bool> beenVisited(graph.size(), false);
 
 	// At least one time, each line of the 2D
 	// vector will be run through this while loop
 	do{
-		// Each element in a row will be run through
-		// this for-loop. If the element currently
-		// "focused" on is less than the current shortest
-		// path (as represented by a smaller number),
-		// has NOT been visited yet, AND doesn't equal 0
-		// (what I used to represent no border/the current
-		// element) then it is made the next element and
-		// variables are adjusted accordingly
+		// Iterates over each column in a given row
 		for(int currCol=0; currCol < graph[currRow].size(); currCol++){
+			// If a shortest path is found, sets the next target
+			// row to the column that has the shortest path
 			if(graph[currRow][currCol] < currShortestPath && graph[currRow][currCol] != 0 && beenVisited[currCol] == false){
 				currShortestPath = graph[currRow][currCol];
 				next=currCol;
@@ -68,27 +65,25 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<int>> graph){
 
 		}
 
-		// If we are not on the last item, then this
-		// if-statement runs, essentially resetting
-		// the shortest path, setting the current row
-		// to the next one, and adding the movement to
-		// the list for the record.
+		// If the current row isn't the last:
+		//  - Resets currShortestPath and next row is set
+		//  - updates the current row to true in beenVisited
+		//  - pointsVisited list is updated
 		if(next != currRow){
 			// The print statement below was used for testing, please ignore
 			// std::cout << currRow << "->" << next << "; cost: " << cost << std::endl;
-			pointsVisited.push_back(currRow + "->" + next);
+			pointsVisited.push_back(toLabel(currRow) + "->" + toLabel(next));
 			beenVisited[currRow] = true;
 			currRow = next;
-			currShortestPath = 99999999999999999999999999999999999999999999999999999999;
+			currShortestPath = DEFAULT_SHORTEST_PATH;
 
-		// If we ARE on the last item, then "end" is
-		// added to the end of the list and all elements
-		// are marked as visited
+		// If the current row is the last:
+		//  - pointsVisited is updated
+		//  - current row is marked as true in beenVisited
 		} else {
-			std::cout << "End" << std::endl;
+			//std::cout << "End" << std::endl;
 			pointsVisited.push_back("end");
 			beenVisited[currRow] = true;
-
 
 		}
 

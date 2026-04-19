@@ -1,7 +1,8 @@
 // File Name: vehicleRoutingProblem.h
 // Authors: Adam Campbell, Tyler Gill, Tristan Worthington
-// Date: 
-// Purpose: Fill in later pls k thx
+// Date: 4/19/2026
+// Purpose: To house the includes for the necessary
+// 	    libraries for our functions to work
 
 #include <vector>
 #include <string>
@@ -16,11 +17,15 @@
 // functions have been properly 
 // implemented
 // - T
+bool confirmAllVisitied(std::vector<bool>);
+void tabuSearch();
+std::string toLabel(int);
+int computeSaving(int, int, const std::vector<std::vector<int>>&);
+int findRoute(int, const std::vector<std::vector<int>>&);
+bool isInterior(int, const std::vector<std::vector<int>>&);
 std::list<std::string> clarkWright(std::vector<std::vector<int>>);
 std::list<std::string> nearestNeighbor(std::vector<std::vector<int>>);
 std::list<std::string> tabuSearch(std::vector<std::vector<int>> graph);
-bool confirmAllVisitied(std::vector<bool>);
-void tabuSearch();
 
 // If needed, add classes after this point
 // or in new .h files

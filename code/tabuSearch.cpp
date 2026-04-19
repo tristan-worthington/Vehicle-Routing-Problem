@@ -14,14 +14,9 @@ using namespace std;
 const int TABU_TENURE = 7;
 const int MAX_ITER = 100;
 
-// Convert index → string label (0 -> "A", 1 -> "B", ...)
-string toLabel(int i) {
-    return string(1, 'A' + i);
-}
-
 // Compute total cost of given route
-int computeCost(const vector<int>& route,
-                const vector<vector<int>>& graph) {
+int computeCost(const std::vector<int>& route,
+                const std::vector<std::vector<int>>& graph) {
     int cost = 0;
     //sums distance between consecutive nodes
     for (int i = 0; i < route.size() - 1; i++) {
@@ -33,15 +28,15 @@ int computeCost(const vector<int>& route,
 }
 
 // Generate initial solution (0,1,2,...,n-1)
-vector<int> initialSolution(int n) {
-    vector<int> route(n);
+std::vector<int> initialSolution(int n) {
+    std::vector<int> route(n);
     for (int i = 0; i < n; i++)
         route[i] = i;
     return route;
 }
 
 // Check tabu (whether or not move is forbidden)
-bool isTabu(pair<int,int> move, const deque<pair<int,int>>& tabuList) {
+bool isTabu(pair<int,int> move, const std::deque<pair<int,int>>& tabuList) {
     for (auto& t : tabuList) {
         if (t == move) return true;
     }
@@ -49,21 +44,21 @@ bool isTabu(pair<int,int> move, const deque<pair<int,int>>& tabuList) {
 }
 
 // Tabu Search function
-list<string> tabuSearch(vector<vector<int>> graph) {
+std::list<string> tabuSearch(std::vector<std::vector<int>> graph) {
     clock_t startTime = clock();
 
     int n = graph.size();
 
-    vector<int> current = initialSolution(n);
-    vector<int> best = current;
+    std::vector<int> current = initialSolution(n);
+    std::vector<int> best = current;
 
     int bestCost = computeCost(best, graph);
 
-    deque<pair<int,int>> tabuList;
+    std::deque<pair<int,int>> tabuList;
 
     for (int iter = 0; iter < MAX_ITER; iter++) {
 
-        vector<int> bestNeighbor;
+        std::vector<int> bestNeighbor;
         int bestNeighborCost = numeric_limits<int>::max();
         pair<int,int> bestMove = {-1, -1};
 
@@ -71,7 +66,7 @@ list<string> tabuSearch(vector<vector<int>> graph) {
         for (int i = 1; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
 
-                vector<int> neighbor = current;
+                std::vector<int> neighbor = current;
                 swap(neighbor[i], neighbor[j]);
 
                 int cost = computeCost(neighbor, graph);
@@ -105,7 +100,7 @@ list<string> tabuSearch(vector<vector<int>> graph) {
     }
 
     // Convert result to list<string>
-    list<string> result;
+    std::list<string> result;
     for (int node : best) {
         result.push_back(toLabel(node));
     }

@@ -8,6 +8,9 @@
 #include <list>
 #include <iostream>
 #include <ctime>
+#include <limits>
+#include <algorithm>
+#include <deque>
 
 // Change return types and inputwhen 
 // functions have been properly 
@@ -15,6 +18,7 @@
 // - T
 void clarkWrightSavings();
 std::list<std::string> nearestNeighbor(std::vector<std::vector<int>>);
+std::list<std::string> tabuSearch(std::vector<std::vector<int>> graph);
 bool confirmAllVisitied(std::vector<bool>);
 void tabuSearch();
 

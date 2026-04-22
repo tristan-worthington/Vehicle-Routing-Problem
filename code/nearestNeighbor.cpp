@@ -38,13 +38,13 @@ bool confirmAllVisited(std::vector<bool> beenVisited){
 // Nearest Neighbor does not play well with elemenents
 // that have no neighbors. (eg some vertex H that
 // shares no connections with any other vertex.)
-std::list<std::string> nearestNeighbor(std::vector<std::vector<int>> graph){	
+std::list<std::string> nearestNeighbor(std::vector<std::vector<double>> graph){	
 	// Variables uses throughout function
-	clock_t startTime = clock();
-	int cost;
+	auto start = std::chrono::high_resolution_clock::now();
+	double cost;
 	int currRow = 0;
-	const int DEFAULT_SHORTEST_PATH = 9999999;
-	int currShortestPath = DEFAULT_SHORTEST_PATH;
+	const double DEFAULT_SHORTEST_PATH = 9999999;
+	double currShortestPath = DEFAULT_SHORTEST_PATH;
 	int next;
 	std::list<std::string> pointsVisited;
 	std::vector<bool> beenVisited(graph.size(), false);
@@ -72,7 +72,7 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<int>> graph){
 		if(next != currRow){
 			// The print statement below was used for testing, please ignore
 			// std::cout << currRow << "->" << next << "; cost: " << cost << std::endl;
-			pointsVisited.push_back(toLabel(currRow) + "->" + toLabel(next));
+			pointsVisited.push_back(std::to_string(currRow + 1) + "->" + std::to_string(next + 1));
 			beenVisited[currRow] = true;
 			currRow = next;
 			currShortestPath = DEFAULT_SHORTEST_PATH;
@@ -91,7 +91,10 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<int>> graph){
 
 	// Prints the runtime of the function in seconds 
 	// before returning the final list of elements
-	std::cout << "Run Time: " << (clock() - startTime) / CLOCKS_PER_SEC << " seconds" << std::endl;
+	auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+
+    std::cout << "Run Time: " << elapsed.count() << " seconds" << std::endl;
 	return pointsVisited;
 
 }

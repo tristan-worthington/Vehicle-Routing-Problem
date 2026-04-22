@@ -15,9 +15,9 @@ const int TABU_TENURE = 7;
 const int MAX_ITER = 100;
 
 // Compute total cost of given route
-int computeCost(const std::vector<int>& route,
-                const std::vector<std::vector<int>>& graph) {
-    int cost = 0;
+double computeCost(const std::vector<int>& route,
+                const std::vector<std::vector<double>>& graph) {
+    double cost = 0;
     //sums distance between consecutive nodes
     for (int i = 0; i < route.size() - 1; i++) {
         cost += graph[route[i]][route[i+1]];
@@ -44,22 +44,22 @@ bool isTabu(pair<int,int> move, const std::deque<pair<int,int>>& tabuList) {
 }
 
 // Tabu Search function
-std::list<string> tabuSearch(std::vector<std::vector<int>> graph) {
-    clock_t startTime = clock();
+std::list<string> tabuSearch(std::vector<std::vector<double>> graph) {
+    auto start = std::chrono::high_resolution_clock::now();
 
     int n = graph.size();
 
     std::vector<int> current = initialSolution(n);
     std::vector<int> best = current;
 
-    int bestCost = computeCost(best, graph);
+    double bestCost = computeCost(best, graph);
 
     std::deque<pair<int,int>> tabuList;
 
     for (int iter = 0; iter < MAX_ITER; iter++) {
 
         std::vector<int> bestNeighbor;
-        int bestNeighborCost = numeric_limits<int>::max();
+        double bestNeighborCost = numeric_limits<double>::max();
         pair<int,int> bestMove = {-1, -1};
 
         // Explore neighbors (swap i, j)
@@ -69,7 +69,7 @@ std::list<string> tabuSearch(std::vector<std::vector<int>> graph) {
                 std::vector<int> neighbor = current;
                 swap(neighbor[i], neighbor[j]);
 
-                int cost = computeCost(neighbor, graph);
+                double cost = computeCost(neighbor, graph);
 
                 pair<int,int> move = {neighbor[i], neighbor[j]};
 
@@ -102,12 +102,15 @@ std::list<string> tabuSearch(std::vector<std::vector<int>> graph) {
     // Convert result to list<string>
     std::list<string> result;
     for (int node : best) {
-        result.push_back(toLabel(node));
+        result.push_back(to_string(node + 1));
     }
     // optionally return to start
-    result.push_back(toLabel(best[0]));
+    result.push_back(to_string(best[0] + 1));
     
-    cout << "Run Time: " << (clock() - startTime) / CLOCKS_PER_SEC << " seconds" << endl;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+
+    std::cout << "Run Time: " << elapsed.count() << " seconds" << std::endl;
 
     return result;
 }

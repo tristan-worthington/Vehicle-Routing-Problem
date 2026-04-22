@@ -10,12 +10,12 @@
 // node i and node j yields a cost reduction of 'saving'
 struct Saving {
     int i, j;
-    int saving;
+    double saving;
 };
 
 // Compute the Clark-Wright saving value for nodes i and j
 // given depot at index 0
-int computeSaving(int i, int j, const std::vector<std::vector<int>>& graph) {
+double computeSaving(int i, int j, const std::vector<std::vector<double>>& graph) {
     int depot = 0;
     return graph[depot][i] + graph[depot][j] - graph[i][j];
 }
@@ -42,8 +42,8 @@ bool isInterior(int node, const std::vector<int>& route) {
 // Each customer begins on its own route (depot -> customer -> depot)
 // Routes are then merged greedily by descending savings value
 // Return a list of strings describing each final route
-std::list<std::string> clarkWright(std::vector<std::vector<int>> graph) {
-    clock_t startTime = clock();
+std::list<std::string> clarkWright(std::vector<std::vector<double>> graph) {
+    auto start = std::chrono::high_resolution_clock::now();
 
     int n = graph.size();
     int depot = 0;
@@ -53,7 +53,7 @@ std::list<std::string> clarkWright(std::vector<std::vector<int>> graph) {
     std::vector<Saving> savings;
     for (int i = 1; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
-            int s = computeSaving(i, j, graph);
+            double s = computeSaving(i, j, graph);
             savings.push_back({i, j, s});
         }
     }
@@ -108,14 +108,17 @@ std::list<std::string> clarkWright(std::vector<std::vector<int>> graph) {
     // Each route is expressed as: depot -> A -> B -> ... -> depot
     std::list<std::string> result;
     for (const std::vector<int>& route : routes) {
-        std::string routeStr = toLabel(depot);
+        std::string routeStr = std::to_string(depot + 1);
         for (int node : route) {
-            routeStr += "->" + toLabel(node);
+            routeStr += "->" + std::to_string(node + 1);
         }
-        routeStr += "->" + toLabel(depot);
+        routeStr += "->" + std::to_string(depot + 1);
         result.push_back(routeStr);
     }
 
-    std::cout << "Run Time: " << (clock() - startTime) / CLOCKS_PER_SEC << " seconds" << std::endl;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+
+    std::cout << "Run Time: " << elapsed.count() << " seconds" << std::endl;
     return result;
 }

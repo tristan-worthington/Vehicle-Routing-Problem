@@ -8,9 +8,48 @@
 
 using namespace std;
 
+vector<vector<double>> loadTSPLIB(string filename) {
+    ifstream in(filename);
+    string line;
+    bool read = false;
+
+    vector<vector<double>> coords;
+
+    while (getline(in, line)) {
+        if (line.find("NODE_COORD_SECTION") != string::npos) {
+            read = true;
+            continue;
+        }
+
+        if (!read || line == "EOF" || line.empty()) continue;
+
+        int id;
+        double x, y;
+        stringstream ss(line);
+        ss >> id >> x >> y;
+
+        coords.push_back({x, y});
+    }
+
+    int n = coords.size();
+    vector<vector<double>> graph(n, vector<double>(n));
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            double dx = coords[i][0] - coords[j][0];
+            double dy = coords[i][1] - coords[j][1];
+            graph[i][j] = sqrt(dx*dx + dy*dy);
+        }
+    }
+
+    return graph;
+}
+
 int main(){
-	vector<vector<int>> graph = {{0, 29, 82, 74, 32}, {29, 0, 55, 35, 46}, {82, 55, 0, 5, 65}, {74, 35, 5, 0, 70}, {32, 46, 65, 70, 0}};
+	//New function for loading in dataset files 
 	
+	auto graph = loadTSPLIB("eil76.tsp");
+
 	cout << "Nearest Neighbor Route" << endl;
 	list<string> temp1 = nearestNeighbor(graph);
 	for(std::string i : temp1){
@@ -33,4 +72,3 @@ int main(){
 	}
 
 }
-

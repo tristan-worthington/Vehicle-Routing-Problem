@@ -12,20 +12,21 @@
 #include <limits>
 #include <algorithm>
 #include <deque>
-
+#include <fstream>
+#include <sstream>
+#include <cmath>
+#include <chrono>
 // Change return types and inputwhen 
 // functions have been properly 
 // implemented
 // - T
-bool confirmAllVisitied(std::vector<bool>);
-void tabuSearch();
-std::string toLabel(int);
-int computeSaving(int, int, const std::vector<std::vector<int>>&);
+bool confirmAllVisited(std::vector<bool>);
+double computeSaving(int, int, const std::vector<std::vector<int>>&);
 int findRoute(int, const std::vector<std::vector<int>>&);
 bool isInterior(int, const std::vector<std::vector<int>>&);
-std::list<std::string> clarkWright(std::vector<std::vector<int>>);
-std::list<std::string> nearestNeighbor(std::vector<std::vector<int>>);
-std::list<std::string> tabuSearch(std::vector<std::vector<int>> graph);
+std::list<std::string> clarkWright(std::vector<std::vector<double>>);
+std::list<std::string> nearestNeighbor(std::vector<std::vector<double>>);
+std::list<std::string> tabuSearch(std::vector<std::vector<double>> graph);
 
 // If needed, add classes after this point
 // or in new .h files

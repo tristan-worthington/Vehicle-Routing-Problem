@@ -72,7 +72,7 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<double>> graph){
 		if(next != currRow){
 			// The print statement below was used for testing, please ignore
 			// std::cout << currRow << "->" << next << "; cost: " << cost << std::endl;
-			pointsVisited.push_back(std::to_string(currRow + 1) + "->" + std::to_string(next + 1));
+			pointsVisited.push_back(std::to_string(currRow + 1) + "->");
 			beenVisited[currRow] = true;
 			currRow = next;
 			currShortestPath = DEFAULT_SHORTEST_PATH;
@@ -82,7 +82,7 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<double>> graph){
 		//  - current row is marked as true in beenVisited
 		} else {
 			//std::cout << "End" << std::endl;
-			pointsVisited.push_back("end");
+			pointsVisited.push_back("1");
 			beenVisited[currRow] = true;
 
 		}

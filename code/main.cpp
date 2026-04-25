@@ -46,28 +46,49 @@ vector<vector<double>> loadTSPLIB(string filename) {
 }
 
 int main(){
-	//New function for loading in dataset files 
+	// Vector of all datasets to ensure streamlined
+	// testing
+	vector<string> fileNames = {"berlin52.tsp", "burma14.tsp", "eil76.tsp", "kroA100.tsp", "kroA150.tsp", "kroA200.tsp", "ulysses22.tsp"};
+
+	bool firstTime = true;
+
+	cout << "NOTE: The numbers after the runtime represent the route from one node to the next" << endl;
+
+	for(string fileName : fileNames){
+		//New function for loading in dataset files 
+		auto graph = loadTSPLIB(fileName);
+
+		cout << "Dataset: " << fileName << endl;
+		cout << "------------" << endl;
+
+		cout << "Nearest Neighbor Route" << endl;
+		list<string> temp1 = nearestNeighbor(graph);
+		for(std::string i : temp1){
+			cout << i;
 	
-	auto graph = loadTSPLIB("eil76.tsp");
+		}
+		cout << endl;
 
-	cout << "Nearest Neighbor Route" << endl;
-	list<string> temp1 = nearestNeighbor(graph);
-	for(std::string i : temp1){
-		cout << i << endl;
+		cout << endl;
+	
+		cout << "Clark-Wright Route" << endl;
+		list<string> temp2 = clarkWright(graph);
+		for(std::string i : temp2){
+			cout << i << endl;
+	
+		}
+	
+		cout << endl;
 
-	}
+		cout << "Tabu Search Route" << endl;
+		list<string> temp3 = tabuSearch(graph);
+		for(std::string i : temp3){
+			cout << i << "->";
+	
+		}
+		cout << endl;
 
-	cout << "Clark-Wright Route" << endl;
-	list<string> temp2 = clarkWright(graph);
-	for(std::string i : temp2){
-		cout << i << endl;
-
-	}
-
-	cout << "Tabu Search Route" << endl;
-	list<string> temp3 = tabuSearch(graph);
-	for(std::string i : temp3){
-		cout << i << endl;
+		cout << endl << endl;
 
 	}
 

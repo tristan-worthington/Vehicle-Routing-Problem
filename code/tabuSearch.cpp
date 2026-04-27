@@ -43,9 +43,13 @@ bool isTabu(pair<int,int> move, const std::deque<pair<int,int>>& tabuList) {
     return false;
 }
 
+string toLabel(int node) {
+    return to_string(node);
+}
+
 // Tabu Search function
 std::list<string> tabuSearch(std::vector<std::vector<double>> graph) {
-    auto start = std::chrono::high_resolution_clock::now();
+    clock_t startTime = clock();
 
     int n = graph.size();
 
@@ -69,9 +73,9 @@ std::list<string> tabuSearch(std::vector<std::vector<double>> graph) {
                 std::vector<int> neighbor = current;
                 swap(neighbor[i], neighbor[j]);
 
-                double cost = computeCost(neighbor, graph);
+                int cost = computeCost(neighbor, graph);
 
-                pair<int,int> move = {neighbor[i], neighbor[j]};
+                pair<int,int> move = {current[i], current[j]};
 
                 // Tabu check with aspiration
                 if (isTabu(move, tabuList) && cost >= bestCost)
@@ -102,15 +106,14 @@ std::list<string> tabuSearch(std::vector<std::vector<double>> graph) {
     // Convert result to list<string>
     std::list<string> result;
     for (int node : best) {
-        result.push_back(to_string(node + 1));
+        result.push_back(toLabel(node));
     }
     // optionally return to start
-    result.push_back(to_string(best[0] + 1));
+    result.push_back(toLabel(best[0]));
     
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsed = end - start;
-
-    std::cout << "Run Time: " << elapsed.count() << " seconds" << std::endl;
-
+    int finalCost = computeCost(best, graph);
+    std::cout << "Total distance: " << finalCost << std::endl;
+    cout << "Run Time: " << (clock() - startTime) / CLOCKS_PER_SEC << " seconds" << endl;
+    
     return result;
 }

@@ -41,6 +41,7 @@ bool confirmAllVisited(std::vector<bool> beenVisited){
 std::list<std::string> nearestNeighbor(std::vector<std::vector<double>> graph){	
 	// Variables uses throughout function
 	auto start = std::chrono::high_resolution_clock::now();
+	double totalDistance = 0; //final count initialization
 	double cost;
 	int currRow = 0;
 	const double DEFAULT_SHORTEST_PATH = 9999999;
@@ -52,6 +53,8 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<double>> graph){
 	// At least one time, each line of the 2D
 	// vector will be run through this while loop
 	do{
+		currShortestPath = DEFAULT_SHORTEST_PATH;  //important reset
+		next = currRow;                            //safety reset
 		// Iterates over each column in a given row
 		for(int currCol=0; currCol < graph[currRow].size(); currCol++){
 			// If a shortest path is found, sets the next target
@@ -59,8 +62,7 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<double>> graph){
 			if(graph[currRow][currCol] < currShortestPath && graph[currRow][currCol] != 0 && beenVisited[currCol] == false){
 				currShortestPath = graph[currRow][currCol];
 				next=currCol;
-				cost = graph[currRow][currCol];
-
+				cost= graph[currRow][currCol];
 			}
 
 		}
@@ -72,8 +74,9 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<double>> graph){
 		if(next != currRow){
 			// The print statement below was used for testing, please ignore
 			// std::cout << currRow << "->" << next << "; cost: " << cost << std::endl;
-			pointsVisited.push_back(std::to_string(currRow + 1) + "->");
+			pointsVisited.push_back(std::to_string(currRow + 1) + "->" + std::to_string(next + 1));
 			beenVisited[currRow] = true;
+			totalDistance += cost;   //counting distance
 			currRow = next;
 			currShortestPath = DEFAULT_SHORTEST_PATH;
 
@@ -88,6 +91,14 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<double>> graph){
 		}
 
 	}while(confirmAllVisited(beenVisited) == false);
+
+	// return to start (node 0)
+	if (currRow != 0) {
+		totalDistance += graph[currRow][0];
+		pointsVisited.push_back(std::to_string(currRow + 1) + "->1");
+	}
+
+    std::cout << "Total distance: " << totalDistance << std::endl;
 
 	// Prints the runtime of the function in seconds 
 	// before returning the final list of elements

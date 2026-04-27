@@ -119,6 +119,27 @@ std::list<std::string> clarkWright(std::vector<std::vector<double>> graph) {
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
 
+    // Compute and print total distance for each route
+    double totalDistance = 0;
+
+    for (const std::vector<int>& route : routes) {
+        double routeCost = 0;
+        int prev = depot;
+
+        // from depot -> first node -> ... -> last node
+        for (int node : route) {
+            routeCost += graph[prev][node];
+            prev = node;
+        }
+
+        // return to depot
+        routeCost += graph[prev][depot];
+
+        totalDistance += routeCost;
+    }
+
+    std::cout << "Total distance: " << totalDistance << std::endl;
+
     std::cout << "Run Time: " << elapsed.count() << " seconds" << std::endl;
     return result;
 }

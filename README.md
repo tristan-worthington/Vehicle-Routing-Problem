@@ -8,9 +8,7 @@ This repository documents the collective efforts of our group to find an efficie
  - Out reports, presentations, etc.
 
 # People Involved
-Adam Campbell, 
-Tyler Gill, 
-Tristan Worthington
+Adam Campbell, Tyler Gill, and Tristan Worthington
 
 # Dataset
 The following is a table of describing the dataset used:

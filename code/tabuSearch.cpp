@@ -114,7 +114,7 @@ std::list<string> tabuSearch(std::vector<std::vector<double>> graph) {
     // optionally return to start
     result.push_back(toLabel(best[0]));
     
-    int finalCost = computeCost(best, graph);
+    double finalCost = computeCost(best, graph);
     std::chrono::duration<double> elapsed = end - start;
     std::cout << "Total distance: " << finalCost << std::endl;
     cout << "Run Time: " << elapsed.count() << " seconds" << endl;

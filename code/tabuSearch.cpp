@@ -60,6 +60,7 @@ std::list<string> tabuSearch(std::vector<std::vector<double>> graph) {
 
     std::deque<pair<int,int>> tabuList;
 
+    auto start = std::chrono::high_resolution_clock::now();
     for (int iter = 0; iter < MAX_ITER; iter++) {
 
         std::vector<int> bestNeighbor;
@@ -103,6 +104,8 @@ std::list<string> tabuSearch(std::vector<std::vector<double>> graph) {
         }
     }
 
+    auto end = std::chrono::high_resolution_clock::now();
+
     // Convert result to list<string>
     std::list<string> result;
     for (int node : best) {
@@ -112,8 +115,9 @@ std::list<string> tabuSearch(std::vector<std::vector<double>> graph) {
     result.push_back(toLabel(best[0]));
     
     int finalCost = computeCost(best, graph);
+    std::chrono::duration<double> elapsed = end - start;
     std::cout << "Total distance: " << finalCost << std::endl;
-    cout << "Run Time: " << (clock() - startTime) / CLOCKS_PER_SEC << " seconds" << endl;
+    cout << "Run Time: " << elapsed.count() << " seconds" << endl;
     
     return result;
 }

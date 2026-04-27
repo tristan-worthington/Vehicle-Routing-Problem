@@ -108,6 +108,6 @@ std::list<string> tabuSearch(std::vector<std::vector<int>> graph) {
     result.push_back(toLabel(best[0]));
     
     cout << "Run Time: " << (clock() - startTime) / CLOCKS_PER_SEC << " seconds" << endl;
-
+    
     return result;
 }

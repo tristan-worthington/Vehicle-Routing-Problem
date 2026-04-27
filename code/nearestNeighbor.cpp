@@ -57,10 +57,9 @@ std::list<std::string> nearestNeighbor(std::vector<std::vector<int>> graph){
 			// If a shortest path is found, sets the next target
 			// row to the column that has the shortest path
 			if(graph[currRow][currCol] < currShortestPath && graph[currRow][currCol] != 0 && beenVisited[currCol] == false){
-				currShortestPath = graph[currRow][currCol];
-				next=currCol;
-				cost = graph[currRow][currCol];
-
+    			currShortestPath = graph[currRow][currCol];
+    			next = currCol;
+    			cost = graph[currRow][currCol];
 			}
 
 		}

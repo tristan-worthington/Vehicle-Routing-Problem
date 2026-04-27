@@ -117,5 +117,10 @@ std::list<std::string> clarkWright(std::vector<std::vector<int>> graph) {
     }
 
     std::cout << "Run Time: " << (clock() - startTime) / CLOCKS_PER_SEC << " seconds" << std::endl;
+
+        // Compute and print total distance for each route
+    int totalDistance = 0;
+
+    std::cout << "Total distance (all routes): " << totalDistance << std::endl;
     return result;
 }

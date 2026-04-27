@@ -16,6 +16,8 @@
 #include <sstream>
 #include <cmath>
 #include <chrono>
+#include <random>
+#include <iomanip>
 // Change return types and inputwhen 
 // functions have been properly 
 // implemented
@@ -26,8 +28,8 @@ int findRoute(int, const std::vector<std::vector<int>>&);
 bool isInterior(int, const std::vector<std::vector<int>>&);
 std::list<std::string> clarkWright(std::vector<std::vector<double>>);
 std::list<std::string> nearestNeighbor(std::vector<std::vector<double>>);
-std::list<std::string> tabuSearch(std::vector<std::vector<double>> graph);
-
+std::list<std::string> tabuSearch(std::vector<std::vector<double>>);
+std::list<std::string> antColony(std::vector<std::vector<double>>);
 // If needed, add classes after this point
 // or in new .h files
 // - T

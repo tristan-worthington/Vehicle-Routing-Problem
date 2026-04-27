@@ -8,8 +8,8 @@ This repository documents the collective efforts of our group to find an efficie
  - Out reports, presentations, etc.
 
 # People Involved
-Adam Campbell
-Tyler Gill
+Adam Campbell, 
+Tyler Gill, 
 Tristan Worthington
 
 # Dataset
@@ -44,4 +44,4 @@ The following is a table of describing the dataset used:
 Generative AI was used in the creation of the following:
 Claude AI was used in the assistance of debugging and writing of the following files:
 - clarkWrightSavings.cpp
-    - 
+- antColony.cpp

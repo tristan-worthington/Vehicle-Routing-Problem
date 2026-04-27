@@ -116,6 +116,7 @@ std::list<std::string> clarkWright(std::vector<std::vector<double>> graph) {
         result.push_back(routeStr);
     }
 
+
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
 
@@ -139,7 +140,6 @@ std::list<std::string> clarkWright(std::vector<std::vector<double>> graph) {
     }
 
     std::cout << "Total distance: " << totalDistance << std::endl;
-
     std::cout << "Run Time: " << elapsed.count() << " seconds" << std::endl;
     return result;
 }

@@ -87,9 +87,17 @@ int main(){
 	
 		}
 		cout << endl;
+		cout << endl;
+
+		cout << "Ant Colony Optimization" << endl;
+		list<string> temp4 = antColony(graph);
+		for(std::string i : temp4){
+			cout << i;
+
+		}
 
 		cout << endl << endl;
-
+		
 	}
 
 }

@@ -10,36 +10,22 @@ This repository documents the collective efforts of our group to find an efficie
 # People Involved
 Adam Campbell, Tyler Gill, and Tristan Worthington
 
-# Dataset
-The following is a table of describing the dataset used:
-    DEPOT:
-    0
-    
-    VEHICLE INFO:
-    Capacity: 15
-    Number of Vehicles: 1
-    
-    DISTANCE MATRIX:
+# Dataset(s) Used
+https://github.com/mastqe/tsplib
+[1] Reinelt, G. "TSPLIB--A Traveling Salesman Problem Library." ORSA Journal on Computing, Vol. 3, No. 4, pp. 376-384. Fall 1991. 
+burma14.tsp
+ulysses22.tsp
+berlin52.tsp
+eil76.tsp
+kroA100.tsp
+kroA150.tsp
 
-         0        29        82        46        68        52        72        42        51        55        29        74        23        72        46
-        29         0        55        46        42        43        43        23        23        31        41        51        11        52        21
-        82        55         0        68        46        55        23        43        41        29        79        21        64        31        51
-        46        46        68         0        82        15        72        31        62        42        21        51        51        43        64
-        68        42        46        82         0        74        23        52        21        46        82        58        46        65        23
-        52        43        55        15        74         0        61        23        55        31        33        37        51        29        59
-        72        43        23        72        23        61         0        42        23        31        77        37        51        46        33
-        42        23        43        31        52        23        42         0        33        15        37        33        33        31        37
-        51        23        41        62        21        55        23        33         0        29        62        46        29        51        11
-        55        31        29        42        46        31        31        15        29         0        51        21        41        23        37
-        29        41        79        21        82        33        77        37        62        51         0        65        42        59        61
-        74        51        21        51        58        37        37        33        46        21        65         0        61        11        55
-        23        11        64        51        46        51        51        33        29        41        42        61         0        62        23
-        72        52        31        43        65        29        46        31        51        23        59        11        62         0        59
-        46        21        51        64        23        59        33        37        11        37        61        55        23        59         0
-
+# Running Code
+Both an executable file and linux build can be accessed through the code folder
+When running from cmd, type "g++ main.cpp antColony.cpp clarkWright.cpp nearestNeighbor.cpp tabuSearch.cpp -o run"
 
 # Generative AI Disclosure
 Generative AI was used in the creation of the following:
-Claude AI was used in the assistance of debugging and writing of the following files:
-- clarkWrightSavings.cpp
-- antColony.cpp
+- Clarification of Time complexities for algorithms and clarification of the Vehicle Routing Problem for Checkpoint #1
+- Design and Debugging of clarkWright.cpp and antColony.cpp
+- Grammar check and clarity check when compared against final deliverables for 2400 Project Report

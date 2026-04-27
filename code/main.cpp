@@ -4,6 +4,11 @@
 // Purpose: This is a brief idea for the main function
 // 	    to be built from in the future
 
+
+//-------Running Program--------
+//Both an executable file and linux build can be accessed through the code folder
+//When running from cmd, type "g++ main.cpp antColony.cpp clarkWright.cpp nearestNeighbor.cpp tabuSearch.cpp -o run"
+
 #include "vehicleRoutingProblem.h"
 
 using namespace std;
